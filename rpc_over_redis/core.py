@@ -241,7 +241,9 @@ class RPCOverRedisClient(RPCOverRedis, metaclass=ABCMeta):
         if lock_success:
             if responce.error:
                 _class = globals()[responce.error['type']]
-                raise _class(responce.error['message'])
+                raise _class(
+                    responce.error['parent_exception'] if responce.error['parent_exception'] else responce['message']
+                )
 
             return responce.result
 
@@ -290,6 +292,8 @@ class RPCOverRedisClient(RPCOverRedis, metaclass=ABCMeta):
             def replaced_f(*args, **kwargs):
                 pre_f = methods.get(f'_{m_name}_pre')
                 post_f = methods.get(f'_{m_name}_post')
+
+                # TODO: fill default values if not exists
 
                 args = list(args)
                 args, kwargs = pre_f(self, *args, **kwargs) if pre_f else (args, kwargs)

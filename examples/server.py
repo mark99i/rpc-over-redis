@@ -4,7 +4,7 @@ import uuid
 
 from dotenv import load_dotenv
 
-from rpc_over_redis import RPCOverRedisService
+from rpc_over_redis.core import RPCOverRedisService
 
 load_dotenv()  # load .env REDIS_URL: redis://:password@redis/0
 

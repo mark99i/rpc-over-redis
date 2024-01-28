@@ -4,12 +4,12 @@ import random
 import uuid
 
 from dotenv import load_dotenv
-from rpc_over_redis import RPCOverRedisClient
+from rpc_over_redis.core import RPCOverRedisClient
 
 
 class SmartEchoService(RPCOverRedisClient):
     def __init__(self, conn_url: str):
-        super().__init__(conn_url, 'SmartEchoService', strict_validate_schema=True)
+        super().__init__(conn_url, self.__class__.__name__, strict_validate_schema=True)
 
     def echo(self) -> None:
         ...

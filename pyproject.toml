@@ -1,15 +1,19 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools"]
 
 [project]
 name = "rpc-over-redis"
-version = "0.0.1"
+version = "0.0.5"
 authors = [
   { name="Mark Smirnov", email="mark@mark99.ru" },
 ]
+dependencies = [
+  'redis>=5.0.1',
+  'pydantic>=2.5.2',
+]
 description = "Remote Procedure Call over Redis on Python"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -17,4 +21,4 @@ classifiers = [
 ]
 
 [project.urls]
-"Source code" = "https://github.com/mark99i/jsonfield"
+"Source code" = "https://github.com/mark99i/rpc-over-redis"
